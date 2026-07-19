@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>双向奔赴的日子</title>
+<style>
+:root{
+  --bg1:#fdf6f0; --bg2:#fbe9e7;
+  --primary:#c75c5c; --primary-d:#a8453f;
+  --accent:#d4877d; --gold:#c9a063;
+  --text:#4a3a3a; --text-l:#8a7a7a;
+  --card:#fffaf8; --line:#e8c4be;
+  --shadow:0 8px 30px rgba(199,92,92,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:var(--text); line-height:1.85; min-height:100vh;
+}
+.serif{font-family:"Noto Serif SC","Songti SC","SimSun",serif;}
+
+/* hero */
+.hero{
+  text-align:center; padding:90px 20px 70px; position:relative; overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,250,248,.92),rgba(251,233,231,.5));
+}
+.hero::before,.hero::after{
+  content:""; position:absolute; border-radius:50%; filter:blur(2px); opacity:.5;
+}
+.hero::before{width:280px;height:280px;background:radial-gradient(circle,#f3b7ae,transparent 70%);top:-80px;left:-60px;}
+.hero::after{width:320px;height:320px;background:radial-gradient(circle,#f7d9c8,transparent 70%);bottom:-120px;right:-80px;}
+.hero-inner{position:relative;z-index:1;}
+.hero .sub{letter-spacing:.5em;color:var(--accent);font-size:.95rem;margin-bottom:14px}
+.hero h1{font-size:clamp(2.4rem,7vw,4rem);font-weight:700;color:var(--primary);letter-spacing:.12em;margin-bottom:10px;text-shadow:0 2px 12px rgba(199,92,92,.15)}
+.hero .quote{color:var(--text-l);font-size:1.05rem;max-width:560px;margin:0 auto 8px}
+.hero .span-text{color:var(--gold);font-size:.95rem;margin-top:6px}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:34px}
+.stat{background:var(--card);border-radius:18px;padding:18px 26px;box-shadow:var(--shadow);min-width:120px}
+.stat .num{font-size:2rem;font-weight:700;color:var(--primary);font-family:"Noto Serif SC",serif}
+.stat .lbl{font-size:.85rem;color:var(--text-l);margin-top:2px;letter-spacing:.05em}
+
+/* timeline */
+.timeline{max-width:920px;margin:0 auto;padding:50px 20px 90px;position:relative}
+.timeline::before{
+  content:"";position:absolute;left:28px;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--accent),var(--primary),var(--gold),var(--accent));
+  border-radius:2px;
+}
+.meeting{position:relative;margin:0 0 46px 74px;background:var(--card);border-radius:22px;padding:26px 30px 22px;box-shadow:var(--shadow);transition:transform .3s}
+.meeting:hover{transform:translateY(-3px)}
+.meeting::before{
+  content:"\2764";position:absolute;left:-58px;top:26px;width:42px;height:42px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  box-shadow:0 5px 16px rgba(199,92,92,.45);border:3px solid var(--bg1);
+}
+.m-head{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:6px}
+.badge{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:5px 18px;border-radius:30px;font-size:1.05rem;font-weight:600;letter-spacing:.05em}
+.date-range{color:var(--text-l);font-size:.95rem}
+.m-info{display:flex;flex-wrap:wrap;gap:8px 22px;margin:8px 0 14px;font-size:.95rem;color:var(--text)}
+.m-info .it{display:inline-flex;align-items:center;gap:6px}
+.m-info .it b{color:var(--primary-d);font-weight:600}
+.meals{background:linear-gradient(135deg,#fff5f2,#fdf0ed);border-radius:14px;padding:14px 18px;margin-bottom:8px;border:1px solid #f3ddd6}
+.meal-row{display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed #ecd5ce;font-size:.92rem}
+.meal-row:last-child{border-bottom:none}
+.meal-date{color:var(--primary-d);font-weight:600}
+.meal-label{color:var(--text-l);font-size:.82rem}
+.meal-row .meal{color:var(--text)}
+.meal-row .meal.empty{color:#cbb}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:11px;margin-top:16px}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:13px;cursor:zoom-in;background:#f0e0dd;transition:transform .28s,box-shadow .28s}
+.gallery img:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 12px 26px rgba(199,92,92,.3)}
+.no-photo{grid-column:1/-1;text-align:center;padding:30px 16px;color:var(--text-l);background:#fdf0ed;border:2px dashed #e8c4be;border-radius:14px;font-size:.95rem}
+.no-photo small{display:block;margin-top:6px;color:#b9a09a;font-size:.82rem}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(38,22,22,.94);display:none;align-items:center;justify-content:center;z-index:999;flex-direction:column;padding:20px}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90vw;max-height:80vh;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.lb-bar{color:#fff;margin-top:18px;display:flex;gap:26px;align-items:center}
+.lb-btn{background:rgba(255,255,255,.16);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;transition:background .2s,transform .2s}
+.lb-btn:hover{background:rgba(255,255,255,.32);transform:scale(1.08)}
+.lb-close{position:absolute;top:22px;right:28px;font-size:34px;color:#fff;cursor:pointer;background:none;border:none;opacity:.8}
+.lb-close:hover{opacity:1}
+#lb-counter{font-size:15px;letter-spacing:.1em;min-width:70px;text-align:center}
+
+footer{text-align:center;padding:50px 20px 60px;color:var(--text-l)}
+footer .heart{color:var(--primary);font-size:1.3rem}
+footer p{margin-top:8px;font-size:.9rem}
+
+@media(max-width:640px){
+  .hero{padding:60px 16px 40px}
+  .timeline{padding:30px 8px 60px}
+  .timeline::before{left:16px}
+  .meeting{margin-left:48px;padding:20px 18px}
+  .meeting::before{left:-48px;top:20px;width:34px;height:34px;font-size:14px}
+  .meal-row{grid-template-columns:1fr;gap:2px}
+  .meal-date{margin-bottom:4px}
+  .stat{min-width:100px;padding:14px 18px}
+  .stat .num{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="sub">我 们 的 纪 念 册</div>
+    <h1 class="serif">双向奔赴的日子</h1>
+    <p class="quote">每一次见面，都值得被好好记住。</p>
+    <p class="span-text" id="span-text"></p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+<main class="timeline" id="timeline"></main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLB()">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-bar">
+    <button class="lb-btn" onclick="prevLB()">&#8249;</button>
+    <span id="lb-counter"></span>
+    <button class="lb-btn" onclick="nextLB()">&#8250;</button>
+  </div>
+</div>
+
+<footer>
+  <div class="heart">&#10084;</div>
+  <p>愿我们的故事，未完待续。</p>
+</footer>
+
+<script src="meetings.js"></script>
+<script src="photos.js"></script>
+<script>
+const MEETINGS = window.MEETINGS || [];
+const PHOTOS = window.PHOTO_DATA || {};
+
+function parseDate(s){
+  const m = String(s).match(/(\d{4})\u5e74(\d{1,2})\u6708(\d{1,2})/);
+  return m ? new Date(+m[1], +m[2]-1, +m[3]) : null;
+}
+
+function renderStats(){
+  const totalDays = MEETINGS.reduce((s,m)=>s+(m["\u5929\u6570"]||0),0);
+  const cities = [...new Set(MEETINGS.map(m=>m["\u5730\u70b9"]).filter(Boolean))];
+  const cards = [
+    {num:MEETINGS.length, lbl:"\u6b21\u89c1\u9762"},
+    {num:totalDays, lbl:"\u5929\u76f8\u4f34"},
+    {num:cities.length, lbl:"\u4e2a\u57ce\u5e02"},
+  ];
+  document.getElementById("stats").innerHTML = cards.map(c=>
+    `<div class="stat"><div class="num">${c.num}</div><div class="lbl">${c.lbl}</div></div>`
+  ).join("");
+  // 跨度
+  if(MEETINGS.length>=2){
+    const f=MEETINGS[0], l=MEETINGS[MEETINGS.length-1];
+    const d1=parseDate(f["\u6bcf\u5929"][0]["\u65e5\u671f"]);
+    const d2=parseDate(l["\u6bcf\u5929"][l["\u6bcf\u5929"].length-1]["\u65e5\u671f"]);
+    if(d1&&d2){
+      const days=Math.round((d2-d1)/86400000);
+      document.getElementById("span-text").textContent = `\u4ece ${f["\u6bcf\u5929"][0]["\u65e5\u671f"]} \u5230 ${l["\u6bcf\u5929"][l["\u6bcf\u5929"].length-1]["\u65e5\u671f"]}\uff0c\u4e00\u8d77\u8d70\u8fc7 ${days} \u5929`;
+    }
+  } else if(MEETINGS.length===1){
+    document.getElementById("span-text").textContent = `${MEETINGS[0]["\u65e5\u671f\u8303\u56f4"]||""}`;
+  }
+}
+
+function renderTimeline(){
+  const tl = document.getElementById("timeline");
+  if(!MEETINGS.length){
+    tl.innerHTML = `<p style="text-align:center;color:#8a7a7a;padding:60px">\u8fd8\u6ca1\u6709\u8bb0\u5f55\uff0c\u8bf7\u5728 Excel \u91cc\u6dfb\u52a0\u540e\u53cc\u51fb\u201c\u66f4\u65b0.bat\u201d</p>`;
+    return;
+  }
+  tl.innerHTML = MEETINGS.map(m=>{
+    const key = m["\u6b21\u6570"];
+    const photos = PHOTOS[key] || [];
+    const photoHtml = photos.length
+      ? photos.map((p,i)=>`<img src="${p.thumb}" data-full="${p.full}" data-key="${key}" data-idx="${i}" loading="lazy" alt="${key}\u7167\u7247">`).join("")
+      : `<div class="no-photo">\ud83d\udcf7 \u8fd8\u6ca1\u6709\u7167\u7247<small>\u628a\u7167\u7247\u653e\u8fdb photos/${key}/ \u6587\u4ef6\u5939\uff0c\u518d\u53cc\u51fb\u300c\u66f4\u65b0.bat\u300d</small></div>`;
+    const meals = m["\u6bcf\u5929"].map(d=>{
+      const e=(v)=>v?`<span class="meal">${v}</span>`:`<span class="meal empty">\u2014</span>`;
+      return `<div class="meal-row"><span class="meal-date">${d["\u65e5\u671f"]||"\u2014"}</span>${e(d["\u65e9\u996d"])}${e(d["\u5348\u996d"])}${e(d["\u665a\u996d"])}</div>`;
+    }).join("");
+    const info = [];
+    if(m["\u5730\u70b9"]) info.push(`<span class="it">\ud83d\udccd <b>${m["\u5730\u70b9"]}</b></span>`);
+    if(m["\u4f4f\u5bbf"]) info.push(`<span class="it">\ud83c\udfe8 <b>${m["\u4f4f\u5bbf"]}</b></span>`);
+    info.push(`<span class="it">\ud83d\udcc5 \u5171 <b>${m["\u5929\u6570"]}</b> \u5929</span>`);
+    return `
+    <section class="meeting">
+      <div class="m-head">
+        <span class="badge">${key}</span>
+        <span class="date-range">${m["\u65e5\u671f\u8303\u56f4"]||""}</span>
+      </div>
+      <div class="m-info">${info.join("")}</div>
+      <div class="meals">${meals}</div>
+      <div class="gallery" data-key="${key}">${photoHtml}</div>
+    </section>`;
+  }).join("");
+
+  // 灯箱事件委托
+  tl.addEventListener("click", e=>{
+    if(e.target.tagName==="IMG" && e.target.dataset.key){
+      openLB(e.target.dataset.key, +e.target.dataset.idx);
+    }
+  });
+}
+
+// lightbox
+let curP=[], curFull=[], curI=0;
+function openLB(key, idx){
+  curP = (PHOTOS[key] || []).map(p => p.thumb);
+  curFull = (PHOTOS[key] || []).map(p => p.full);
+  curI = idx;
+  showLB();
+}
+function showLB(){
+  const lb=document.getElementById("lightbox");
+  if(!curFull.length){closeLB();return;}
+  document.getElementById("lb-img").src = curFull[curI];
+  document.getElementById("lb-counter").textContent = `${curI+1} / ${curFull.length}`;
+  lb.classList.add("show");
+}
+function nextLB(){if(!curFull.length)return;curI=(curI+1)%curFull.length;showLB();}
+function prevLB(){if(!curFull.length)return;curI=(curI-1+curFull.length)%curFull.length;showLB();}
+function closeLB(){document.getElementById("lightbox").classList.remove("show");}
+document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox")closeLB();});
+document.addEventListener("keydown",e=>{
+  const lb=document.getElementById("lightbox");
+  if(!lb.classList.contains("show"))return;
+  if(e.key==="ArrowRight")nextLB();
+  else if(e.key==="ArrowLeft")prevLB();
+  else if(e.key==="Escape")closeLB();
+});
+
+renderStats();
+renderTimeline();
+</script>
+</body>
+</html>
