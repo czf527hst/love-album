@@ -170,7 +170,7 @@ function renderStats(){
     const d1=parseDate(f["每天"][0]["日期"]);
     const d2=parseDate(l["每天"][l["每天"].length-1]["日期"]);
     if(d1&&d2){
-      const meetDays=Math.round((d2-d1)/86400000);
+      document.getElementById("span-text").textContent = `2023年4月20日在一起，已经 ${togetherDays} 天。`;
       document.getElementById("span-text").textContent = `2023\u5e744\u670820\u65e5\u5728\u4e00\u8d77\uff0c\u5df2\u7ecf ${togetherDays} \u5929\u3002\u4ece ${f["每天"][0]["日期"]} \u5230 ${l["每天"][l["每天"].length-1]["日期"]}\uff0c\u5171\u89c1\u9762 ${meetDays} \u5929\u3002`;
     }
   } else if(MEETINGS.length===1){
