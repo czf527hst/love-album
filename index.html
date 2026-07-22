@@ -70,6 +70,12 @@ body{
 .meal-label{color:var(--text-l);font-size:.82rem}
 .meal-row .meal{color:var(--text)}
 .meal-row .meal.empty{color:#cbb}
+/* 食物照片 */
+.food-title{font-size:.85rem;color:var(--accent);margin:10px 0 8px;letter-spacing:.05em;display:flex;align-items:center;gap:6px}
+.food-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-top:4px}
+.food-gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;cursor:zoom-in;background:#f0e0dd;transition:transform .28s,box-shadow .28s}
+.food-gallery img:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 22px rgba(199,92,92,.3)}
+.no-food{text-align:center;padding:18px 12px;color:#cbb;font-size:.9rem}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:11px;margin-top:16px}
 .gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:13px;cursor:zoom-in;background:#f0e0dd;transition:transform .28s,box-shadow .28s}
 .gallery img:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 12px 26px rgba(199,92,92,.3)}
@@ -145,25 +151,32 @@ function parseDate(s){
 function renderStats(){
   const totalDays = MEETINGS.reduce((s,m)=>s+(m["\u5929\u6570"]||0),0);
   const cities = [...new Set(MEETINGS.map(m=>m["\u5730\u70b9"]).filter(Boolean))];
+  // \u8ba1\u7b97\u5728\u4e00\u8d77\u5929\u6570\uff082023\u5e744\u670820\u65e5\uff09
+  const togetherDate = new Date(2023, 3, 20); // \u6708\u4efd 0-based
+  const today = new Date();
+  const togetherDays = Math.max(0, Math.round((today - togetherDate) / 86400000));
   const cards = [
-    {num:MEETINGS.length, lbl:"\u6b21\u89c1\u9762"},
-    {num:totalDays, lbl:"\u5929\u76f8\u4f34"},
-    {num:cities.length, lbl:"\u4e2a\u57ce\u5e02"},
+    {num:MEETINGS.length, lbl:"次见面"},
+    {num:totalDays, lbl:"天相伴"},
+    {num:cities.length, lbl:"个城市"},
+    {num:togetherDays, lbl:"天在一起"},
   ];
   document.getElementById("stats").innerHTML = cards.map(c=>
     `<div class="stat"><div class="num">${c.num}</div><div class="lbl">${c.lbl}</div></div>`
   ).join("");
-  // 跨度
+  // \u8de8\u5ea6
   if(MEETINGS.length>=2){
     const f=MEETINGS[0], l=MEETINGS[MEETINGS.length-1];
-    const d1=parseDate(f["\u6bcf\u5929"][0]["\u65e5\u671f"]);
-    const d2=parseDate(l["\u6bcf\u5929"][l["\u6bcf\u5929"].length-1]["\u65e5\u671f"]);
+    const d1=parseDate(f["每天"][0]["日期"]);
+    const d2=parseDate(l["每天"][l["每天"].length-1]["日期"]);
     if(d1&&d2){
-      const days=Math.round((d2-d1)/86400000);
-      document.getElementById("span-text").textContent = `\u4ece ${f["\u6bcf\u5929"][0]["\u65e5\u671f"]} \u5230 ${l["\u6bcf\u5929"][l["\u6bcf\u5929"].length-1]["\u65e5\u671f"]}\uff0c\u4e00\u8d77\u8d70\u8fc7 ${days} \u5929`;
+      const meetDays=Math.round((d2-d1)/86400000);
+      document.getElementById("span-text").textContent = `2023\u5e744\u670820\u65e5\u5728\u4e00\u8d77\uff0c\u5df2\u7ecf ${togetherDays} \u5929\u3002\u4ece ${f["每天"][0]["日期"]} \u5230 ${l["每天"][l["每天"].length-1]["日期"]}\uff0c\u5171\u89c1\u9762 ${meetDays} \u5929\u3002`;
     }
   } else if(MEETINGS.length===1){
-    document.getElementById("span-text").textContent = `${MEETINGS[0]["\u65e5\u671f\u8303\u56f4"]||""}`;
+    document.getElementById("span-text").textContent = `2023\u5e744\u670820\u65e5\u5728\u4e00\u8d77\uff0c\u5df2\u7ecf ${togetherDays} \u5929\u3002${MEETINGS[0]["日期范围"]||""}`;
+  } else {
+    document.getElementById("span-text").textContent = `2023\u5e744\u670820\u65e5\u5728\u4e00\u8d77\uff0c\u5df2\u7ecf ${togetherDays} \u5929\u3002`;
   }
 }
 
@@ -179,10 +192,10 @@ function renderTimeline(){
     const photoHtml = photos.length
       ? photos.map((p,i)=>`<img src="${p.thumb}" data-full="${p.full}" data-key="${key}" data-idx="${i}" loading="lazy" alt="${key}\u7167\u7247">`).join("")
       : `<div class="no-photo">\ud83d\udcf7 \u8fd8\u6ca1\u6709\u7167\u7247<small>\u628a\u7167\u7247\u653e\u8fdb photos/${key}/ \u6587\u4ef6\u5939\uff0c\u518d\u53cc\u51fb\u300c\u66f4\u65b0.bat\u300d</small></div>`;
-    const meals = m["\u6bcf\u5929"].map(d=>{
-      const e=(v)=>v?`<span class="meal">${v}</span>`:`<span class="meal empty">\u2014</span>`;
-      return `<div class="meal-row"><span class="meal-date">${d["\u65e5\u671f"]||"\u2014"}</span>${e(d["\u65e9\u996d"])}${e(d["\u5348\u996d"])}${e(d["\u665a\u996d"])}</div>`;
-    }).join("");
+    const foodPhotos = m["\u98df\u7269\u7167\u7247"] || [];
+    const meals = foodPhotos.length
+      ? `<div class="food-title">&#127860; \u4e00\u8d77\u5403\u8fc7\u7684</div><div class="food-gallery">${foodPhotos.map((p,i)=>`<img src="${p.thumb}" data-full="${p.full}" data-food-key="${key}" data-food-idx="${i}" loading="lazy" alt="\u98df\u7269\u7167\u7247">`).join("")}</div>`
+      : `<div class="no-food">&#127860; \u8fd8\u6ca1\u653e\u98df\u7269\u7167\u7247<small style="display:block;margin-top:4px;color:#b9a09a;font-size:.82rem">\u628a\u7167\u7247\u653e\u8fdb photos/${key.replace(/\u7b2c|\u6b21/g,"")}/food/ \u91cc\uff0c\u518d\u53cc\u51fb\u300c\u66f4\u65b0.bat\u300d</small></div>`;
     const info = [];
     if(m["\u5730\u70b9"]) info.push(`<span class="it">\ud83d\udccd <b>${m["\u5730\u70b9"]}</b></span>`);
     if(m["\u4f4f\u5bbf"]) info.push(`<span class="it">\ud83c\udfe8 <b>${m["\u4f4f\u5bbf"]}</b></span>`);
@@ -203,6 +216,8 @@ function renderTimeline(){
   tl.addEventListener("click", e=>{
     if(e.target.tagName==="IMG" && e.target.dataset.key){
       openLB(e.target.dataset.key, +e.target.dataset.idx);
+    } else if(e.target.tagName==="IMG" && e.target.dataset.foodKey){
+      openFoodLB(e.target.dataset.foodKey, +e.target.dataset.foodIdx);
     }
   });
 }
@@ -212,6 +227,14 @@ let curP=[], curFull=[], curI=0;
 function openLB(key, idx){
   curP = (PHOTOS[key] || []).map(p => p.thumb);
   curFull = (PHOTOS[key] || []).map(p => p.full);
+  curI = idx;
+  showLB();
+}
+function openFoodLB(key, idx){
+  const m = MEETINGS.find(x => x["\u6b21\u6570"] === key);
+  const food = m ? (m["\u98df\u7269\u7167\u7247"] || []) : [];
+  curP = food.map(p => p.thumb);
+  curFull = food.map(p => p.full);
   curI = idx;
   showLB();
 }
