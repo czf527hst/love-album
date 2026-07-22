@@ -247,7 +247,40 @@ window.MEETINGS = [
     ],
     "日期范围": "2024年10月15日 ~ 2024年10月17日",
     "天数": 3,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/10/food/IMG_20241015_191406.jpg",
+        "full": "photos/10/food/IMG_20241015_191406.jpg"
+      },
+      {
+        "thumb": "web/10/food/IMG_20241015_193635.jpg",
+        "full": "photos/10/food/IMG_20241015_193635.jpg"
+      },
+      {
+        "thumb": "web/10/food/IMG_20241017_090839.jpg",
+        "full": "photos/10/food/IMG_20241017_090839.jpg"
+      },
+      {
+        "thumb": "web/10/food/IMG_20241017_091507.jpg",
+        "full": "photos/10/food/IMG_20241017_091507.jpg"
+      },
+      {
+        "thumb": "web/10/food/IMG_20241017_174332.jpg",
+        "full": "photos/10/food/IMG_20241017_174332.jpg"
+      },
+      {
+        "thumb": "web/10/food/mmexport1729002877595.jpg",
+        "full": "photos/10/food/mmexport1729002877595.jpg"
+      },
+      {
+        "thumb": "web/10/food/mmexport1729042628431.jpg",
+        "full": "photos/10/food/mmexport1729042628431.jpg"
+      },
+      {
+        "thumb": "web/10/food/mmexport1729081606740.jpg",
+        "full": "photos/10/food/mmexport1729081606740.jpg"
+      }
+    ]
   },
   {
     "次数": "第十一次",
@@ -269,7 +302,28 @@ window.MEETINGS = [
     ],
     "日期范围": "2025年1月18号 ~ 2025年1月19号",
     "天数": 2,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/11/food/IMG_20250119_010407.jpg",
+        "full": "photos/11/food/IMG_20250119_010407.jpg"
+      },
+      {
+        "thumb": "web/11/food/IMG_20250119_010411.jpg",
+        "full": "photos/11/food/IMG_20250119_010411.jpg"
+      },
+      {
+        "thumb": "web/11/food/IMG_20250119_144032.jpg",
+        "full": "photos/11/food/IMG_20250119_144032.jpg"
+      },
+      {
+        "thumb": "web/11/food/mmexport1737280704089.jpg",
+        "full": "photos/11/food/mmexport1737280704089.jpg"
+      },
+      {
+        "thumb": "web/11/food/promphoto_1737279606344.jpg",
+        "full": "photos/11/food/promphoto_1737279606344.jpg"
+      }
+    ]
   },
   {
     "次数": "第十二次",
@@ -291,7 +345,20 @@ window.MEETINGS = [
     ],
     "日期范围": "2025年2月14日 ~ 2025年2月15日",
     "天数": 2,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/12/food/IMG_20250215_084637.jpg",
+        "full": "photos/12/food/IMG_20250215_084637.jpg"
+      },
+      {
+        "thumb": "web/12/food/IMG_20250215_085120.jpg",
+        "full": "photos/12/food/IMG_20250215_085120.jpg"
+      },
+      {
+        "thumb": "web/12/food/IMG_20250215_170527.jpg",
+        "full": "photos/12/food/IMG_20250215_170527.jpg"
+      }
+    ]
   },
   {
     "次数": "第十三次",
@@ -313,7 +380,12 @@ window.MEETINGS = [
     ],
     "日期范围": "2025年5月18日 ~ 2025年5月19日",
     "天数": 2,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/13/food/IMG_20250518_175819.jpg",
+        "full": "photos/13/food/IMG_20250518_175819.jpg"
+      }
+    ]
   },
   {
     "次数": "第十四次",
@@ -341,7 +413,12 @@ window.MEETINGS = [
     ],
     "日期范围": "2025年7月5日 ~ 2025年7月7日",
     "天数": 3,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/14/food/IMG_20250706_194558.jpg",
+        "full": "photos/14/food/IMG_20250706_194558.jpg"
+      }
+    ]
   },
   {
     "次数": "第十五次",
@@ -369,7 +446,20 @@ window.MEETINGS = [
     ],
     "日期范围": "2025年10月20日 ~ 2025年10月22日",
     "天数": 3,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/15/food/IMG_20251022_003917.jpg",
+        "full": "photos/15/food/IMG_20251022_003917.jpg"
+      },
+      {
+        "thumb": "web/15/food/IMG_20251022_090806.jpg",
+        "full": "photos/15/food/IMG_20251022_090806.jpg"
+      },
+      {
+        "thumb": "web/15/food/IMG_20251022_142943.jpg",
+        "full": "photos/15/food/IMG_20251022_142943.jpg"
+      }
+    ]
   },
   {
     "次数": "第十六次",
@@ -397,7 +487,16 @@ window.MEETINGS = [
     ],
     "日期范围": "2026年1月26日 ~ 2026年1月28日",
     "天数": 3,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/16/food/IMG_20260127_174350.jpg",
+        "full": "photos/16/food/IMG_20260127_174350.jpg"
+      },
+      {
+        "thumb": "web/16/food/MVIMG_20260126_195817.jpg",
+        "full": "photos/16/food/MVIMG_20260126_195817.jpg"
+      }
+    ]
   },
   {
     "次数": "第十七次",
@@ -419,7 +518,20 @@ window.MEETINGS = [
     ],
     "日期范围": "2026年3月25日 ~ 2026年3月26日",
     "天数": 2,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/17/food/MVIMG_20260326_172740.jpg",
+        "full": "photos/17/food/MVIMG_20260326_172740.jpg"
+      },
+      {
+        "thumb": "web/17/food/MVIMG_20260326_172835.jpg",
+        "full": "photos/17/food/MVIMG_20260326_172835.jpg"
+      },
+      {
+        "thumb": "web/17/food/promphoto_1774517025300.jpg",
+        "full": "photos/17/food/promphoto_1774517025300.jpg"
+      }
+    ]
   },
   {
     "次数": "第十八次",
@@ -447,7 +559,24 @@ window.MEETINGS = [
     ],
     "日期范围": "2026年4月19日 ~ 2026年4月21日",
     "天数": 3,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/18/food/MVIMG_20260420_182152.jpg",
+        "full": "photos/18/food/MVIMG_20260420_182152.jpg"
+      },
+      {
+        "thumb": "web/18/food/MVIMG_20260420_212146.jpg",
+        "full": "photos/18/food/MVIMG_20260420_212146.jpg"
+      },
+      {
+        "thumb": "web/18/food/MVIMG_20260420_212202.jpg",
+        "full": "photos/18/food/MVIMG_20260420_212202.jpg"
+      },
+      {
+        "thumb": "web/18/food/MVIMG_20260421_170533.jpg",
+        "full": "photos/18/food/MVIMG_20260421_170533.jpg"
+      }
+    ]
   },
   {
     "次数": "第十九次",
@@ -481,6 +610,15 @@ window.MEETINGS = [
     ],
     "日期范围": "2026年6月8日 ~ 2026年6月11日",
     "天数": 4,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/19/food/MVIMG_20260609_183941.jpg",
+        "full": "photos/19/food/MVIMG_20260609_183941.jpg"
+      },
+      {
+        "thumb": "web/19/food/MVIMG_20260610_194043.jpg",
+        "full": "photos/19/food/MVIMG_20260610_194043.jpg"
+      }
+    ]
   }
 ];
