@@ -175,7 +175,24 @@ window.MEETINGS = [
     ],
     "日期范围": "2024年4月19日 ~ 2024年4月21日",
     "天数": 3,
-    "食物照片": []
+    "食物照片": [
+      {
+        "thumb": "web/7/food/IMG_20240421_081039.jpg",
+        "full": "photos/7/food/IMG_20240421_081039.jpg"
+      },
+      {
+        "thumb": "web/7/food/IMG_20240421_085412.jpg",
+        "full": "photos/7/food/IMG_20240421_085412.jpg"
+      },
+      {
+        "thumb": "web/7/food/IMG_20240421_142618.jpg",
+        "full": "photos/7/food/IMG_20240421_142618.jpg"
+      },
+      {
+        "thumb": "web/7/food/IMG_20240421_142828.jpg",
+        "full": "photos/7/food/IMG_20240421_142828.jpg"
+      }
+    ]
   },
   {
     "次数": "第八次",
