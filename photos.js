@@ -636,5 +636,121 @@ window.PHOTO_DATA = {
       "thumb": "web/19/mmexport1784470092975.jpg",
       "full": "photos/19/mmexport1784470092975.jpg"
     }
+  ],
+  "第八次": [
+    {
+      "thumb": "web/8/IMG_20240802_203925.jpg",
+      "full": "photos/8/IMG_20240802_203925.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_012415.jpg",
+      "full": "photos/8/IMG_20240803_012415.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_012425.jpg",
+      "full": "photos/8/IMG_20240803_012425.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_143002.jpg",
+      "full": "photos/8/IMG_20240803_143002.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_190343.jpg",
+      "full": "photos/8/IMG_20240803_190343.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_191648.jpg",
+      "full": "photos/8/IMG_20240803_191648.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_191713.jpg",
+      "full": "photos/8/IMG_20240803_191713.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_192148.jpg",
+      "full": "photos/8/IMG_20240803_192148.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_192149.jpg",
+      "full": "photos/8/IMG_20240803_192149.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_192156.jpg",
+      "full": "photos/8/IMG_20240803_192156.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_192223.jpg",
+      "full": "photos/8/IMG_20240803_192223.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_200226.jpg",
+      "full": "photos/8/IMG_20240803_200226.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_200342.jpg",
+      "full": "photos/8/IMG_20240803_200342.jpg"
+    },
+    {
+      "thumb": "web/8/IMG_20240803_200834.jpg",
+      "full": "photos/8/IMG_20240803_200834.jpg"
+    },
+    {
+      "thumb": "web/8/Screenshot_2024-08-03-21-57-24-238_com.tencent.mm.jpg",
+      "full": "photos/8/Screenshot_2024-08-03-21-57-24-238_com.tencent.mm.jpg"
+    },
+    {
+      "thumb": "web/8/Screenshot_2024-08-03-21-57-58-689_com.tencent.mm.jpg",
+      "full": "photos/8/Screenshot_2024-08-03-21-57-58-689_com.tencent.mm.jpg"
+    },
+    {
+      "thumb": "web/8/Screenshot_2024-08-03-21-59-19-845_com.tencent.mm.jpg",
+      "full": "photos/8/Screenshot_2024-08-03-21-59-19-845_com.tencent.mm.jpg"
+    },
+    {
+      "thumb": "web/8/Screenshot_2024-08-03-21-59-37-841_com.tencent.mm.jpg",
+      "full": "photos/8/Screenshot_2024-08-03-21-59-37-841_com.tencent.mm.jpg"
+    },
+    {
+      "thumb": "web/8/Screenshot_2024-08-03-22-00-04-903_com.tencent.mm.jpg",
+      "full": "photos/8/Screenshot_2024-08-03-22-00-04-903_com.tencent.mm.jpg"
+    }
+  ],
+  "第九次": [
+    {
+      "thumb": "web/9/IMG_20240809_172749.jpg",
+      "full": "photos/9/IMG_20240809_172749.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240809_214109.jpg",
+      "full": "photos/9/IMG_20240809_214109.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240809_214257.jpg",
+      "full": "photos/9/IMG_20240809_214257.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240810_142536.jpg",
+      "full": "photos/9/IMG_20240810_142536.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240810_183703.jpg",
+      "full": "photos/9/IMG_20240810_183703.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240810_190033.jpg",
+      "full": "photos/9/IMG_20240810_190033.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240810_190107.jpg",
+      "full": "photos/9/IMG_20240810_190107.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240810_190606.jpg",
+      "full": "photos/9/IMG_20240810_190606.jpg"
+    },
+    {
+      "thumb": "web/9/IMG_20240810_190846.jpg",
+      "full": "photos/9/IMG_20240810_190846.jpg"
+    }
   ]
 };
