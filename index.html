@@ -142,6 +142,8 @@ footer p{margin-top:8px;font-size:.9rem}
 <script>
 const MEETINGS = window.MEETINGS || [];
 const PHOTOS = window.PHOTO_DATA || {};
+// jsDelivr CDN 加速（国内有节点，比 GitHub Pages 快 5-10 倍）
+const CDN_BASE = "https://cdn.jsdelivr.net/gh/czf527hst/love-album@main/";
 
 function parseDate(s){
   const m = String(s).match(/(\d{4})\u5e74(\d{1,2})\u6708(\d{1,2})/);
@@ -189,11 +191,11 @@ function renderTimeline(){
     const key = m["\u6b21\u6570"];
     const photos = PHOTOS[key] || [];
     const photoHtml = photos.length
-      ? photos.map((p,i)=>`<img src="${p.thumb}" data-full="${p.full}" data-key="${key}" data-idx="${i}" loading="lazy" alt="${key}\u7167\u7247">`).join("")
+      ? photos.map((p,i)=>`<img src="${CDN_BASE}${p.thumb}" data-full="${CDN_BASE}${p.full}" data-key="${key}" data-idx="${i}" loading="lazy" alt="${key}\u7167\u7247">`).join("")
       : `<div class="no-photo">\ud83d\udcf7 \u8fd8\u6ca1\u6709\u7167\u7247<small>\u628a\u7167\u7247\u653e\u8fdb photos/${key}/ \u6587\u4ef6\u5939\uff0c\u518d\u53cc\u51fb\u300c\u66f4\u65b0.bat\u300d</small></div>`;
     const foodPhotos = m["\u98df\u7269\u7167\u7247"] || [];
     const meals = foodPhotos.length
-      ? `<div class="food-title">&#127860; \u4e00\u8d77\u5403\u8fc7\u7684</div><div class="food-gallery">${foodPhotos.map((p,i)=>`<img src="${p.thumb}" data-full="${p.full}" data-food-key="${key}" data-food-idx="${i}" loading="lazy" alt="\u98df\u7269\u7167\u7247">`).join("")}</div>`
+      ? `<div class="food-title">&#127860; \u4e00\u8d77\u5403\u8fc7\u7684</div><div class="food-gallery">${foodPhotos.map((p,i)=>`<img src="${CDN_BASE}${p.thumb}" data-full="${CDN_BASE}${p.full}" data-food-key="${key}" data-food-idx="${i}" loading="lazy" alt="\u98df\u7269\u7167\u7247">`).join("")}</div>`
       : `<div class="no-food">&#127860; \u8fd8\u6ca1\u653e\u98df\u7269\u7167\u7247<small style="display:block;margin-top:4px;color:#b9a09a;font-size:.82rem">\u628a\u7167\u7247\u653e\u8fdb photos/${key.replace(/\u7b2c|\u6b21/g,"")}/food/ \u91cc\uff0c\u518d\u53cc\u51fb\u300c\u66f4\u65b0.bat\u300d</small></div>`;
     const info = [];
     if(m["\u5730\u70b9"]) info.push(`<span class="it">\ud83d\udccd <b>${m["\u5730\u70b9"]}</b></span>`);
@@ -240,7 +242,7 @@ function openFoodLB(key, idx){
 function showLB(){
   const lb=document.getElementById("lightbox");
   if(!curFull.length){closeLB();return;}
-  document.getElementById("lb-img").src = curFull[curI];
+  document.getElementById("lb-img").src = CDN_BASE + curFull[curI];
   document.getElementById("lb-counter").textContent = `${curI+1} / ${curFull.length}`;
   lb.classList.add("show");
 }
